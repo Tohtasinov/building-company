@@ -6,8 +6,30 @@ const Support = (props) => {
   const [name, setName] = useState("");
   const [phoneNumber, setPhoneNumber] = useState("");
 
-  const handleSubmit = () => {
-    console.log("Form submitted!");
+  const handleSubmit = async () => {
+    const formData = new FormData();
+    formData.append("name", name);
+    formData.append("phoneNumber", phoneNumber);
+
+    try {
+      const response = await fetch("https://formspree.io/f/xoqgdqpb", {
+        method: "POST",
+        body: formData,
+        headers: {
+          Accept: "application/json",
+        },
+      });
+      if (response.ok) {
+        console.log("Form submitted successfully!");
+        // Очистите состояние формы после успешной отправки
+        setName("");
+        setPhoneNumber("");
+      } else {
+        console.error("Form submission failed!");
+      }
+    } catch (error) {
+      console.error("Error submitting form:", error);
+    }
   };
 
   return (

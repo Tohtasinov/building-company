@@ -5,7 +5,7 @@ import {
   Drawer,
   IconButton,
   List,
-  ListItem,
+  ListItemButton,
   ListItemText,
 } from "@mui/material";
 import MenuIcon from "@mui/icons-material/Menu";
@@ -45,18 +45,18 @@ const Navbar = () => {
             </IconButton>
             <Drawer anchor="right" open={isDrawerOpen} onClose={toggleDrawer}>
               <List>
-                <ListItem button onClick={() => scrollToSection("Home")}>
+                <ListItemButton onClick={() => scrollToSection("Home")}>
                   <ListItemText primary="Home" />
-                </ListItem>
-                <ListItem button onClick={() => scrollToSection("About")}>
+                </ListItemButton>
+                <ListItemButton onClick={() => scrollToSection("About")}>
                   <ListItemText primary="About Us" />
-                </ListItem>
-                <ListItem button onClick={() => scrollToSection("Appartments")}>
+                </ListItemButton>
+                <ListItemButton onClick={() => scrollToSection("Appartments")}>
                   <ListItemText primary="Apartments" />
-                </ListItem>
-                <ListItem button onClick={() => scrollToSection("Contacts")}>
+                </ListItemButton>
+                <ListItemButton onClick={() => scrollToSection("Contacts")}>
                   <ListItemText primary="Contacts" />
-                </ListItem>
+                </ListItemButton>
               </List>
             </Drawer>
           </>
