@@ -46,3 +46,7 @@
 .MuiDrawer-paper {
   background-color: #333; /* Измените цвет фона меню по своему желанию */
 }
+
+.css-78trlr-MuiButtonBase-root-MuiIconButton-root {
+  color: white !important;
+}

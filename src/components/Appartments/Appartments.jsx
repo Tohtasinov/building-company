@@ -5,9 +5,40 @@ import appartment from "../../assets/квартира.jpg";
 import foto1 from "../../assets/foto1.jpg";
 import foto2 from "../../assets/foto23.jpg";
 import foto3 from "../../assets/foto11.jpg";
+import { useLanguage } from "../../LanguageContext"; // Импорт контекста языка
 
 const Appartments = (props) => {
+  const { selectedLanguage } = useLanguage(); // Получение текущего выбранного языка
   const isSmallScreen = useMediaQuery((theme) => theme.breakpoints.down(450));
+
+  const languageTexts = {
+    ru: {
+      title: "Наши услуги",
+      services: [
+        "Оптовая продажа алкогольной продукции",
+        "Предоставление услуг по созданию дизайна",
+        "Маркетинговой стратегии продвижение алкогольной продукции",
+      ],
+    },
+    kg: {
+      title: "Биздин кызматтар",
+      services: [
+        "Алкогольдук продукциянын оптовый сатуу",
+        "Дизайнды жасоо боюнча кызматтарды көрсөтүү",
+        "Алкогольдук продукциянын көчүрүү менен маркетинг стратегиясы",
+      ],
+    },
+    en: {
+      title: "Our Services",
+      services: [
+        "Wholesale alcohol product sales",
+        "Providing services for design creation",
+        "Marketing strategy for promoting alcoholic beverages",
+      ],
+    },
+  };
+
+  const { title, services } = languageTexts[selectedLanguage];
 
   return (
     <Box
@@ -27,7 +58,7 @@ const Appartments = (props) => {
           variant="h3"
           sx={{ textAlign: "center", marginBottom: 3, color: "white" }}
         >
-          Наши услуги
+          {title}
         </Typography>
         <Box
           container
@@ -39,32 +70,16 @@ const Appartments = (props) => {
           color={"white"}
           textAlign={"center"}
         >
-          <Box width={isSmallScreen ? "100%" : "40%"}>
-            <img
-              src={foto1}
-              alt="Apartment 1"
-              style={{ width: "100%", height: "380px", borderRadius: "10px" }}
-            />
-            <Typography>Оптовая продажа алкогольной продукции</Typography>
-          </Box>
-          <Box width={isSmallScreen ? "100%" : "40%"}>
-            <img
-              src={foto2}
-              alt="Apartment 2"
-              style={{ width: "100%", height: "380px", borderRadius: "10px" }}
-            />
-            <Typography>Предоставление услуг по созданию дизайна</Typography>
-          </Box>
-          <Box width={isSmallScreen ? "100%" : "40%"}>
-            <img
-              src={foto3}
-              alt="Apartment 3"
-              style={{ width: "100%", height: "380px", borderRadius: "10px" }}
-            />
-            <Typography>
-              Маркетинговой стратегии продвижение алкогольной продукции{" "}
-            </Typography>
-          </Box>
+          {services.map((service, index) => (
+            <Box key={index} width={isSmallScreen ? "100%" : "40%"}>
+              <img
+                src={index === 0 ? foto1 : index === 1 ? foto2 : foto3}
+                alt={`Service ${index + 1}`}
+                style={{ width: "100%", height: "380px", borderRadius: "10px" }}
+              />
+              <Typography>{service}</Typography>
+            </Box>
+          ))}
         </Box>
       </Box>
     </Box>

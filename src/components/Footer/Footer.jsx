@@ -1,8 +1,49 @@
 import React from "react";
 import { Box, Grid, Typography, useMediaQuery } from "@mui/material";
+import { useLanguage } from "../../LanguageContext"; // Импортируйте ваш контекст языка
 
 const Footer = () => {
+  const { selectedLanguage } = useLanguage();
   const isSmallScreen = useMediaQuery((theme) => theme.breakpoints.down(450));
+
+  const languageTexts = {
+    en: {
+      home: "Home",
+      aboutUs: "About Us",
+      apartments: "Apartments",
+      contacts: "Contacts",
+      title: "INTERMARKETING",
+      description:
+        "Helps alcohol brands successfully bring their products to market. We specialize in design and marketing strategies, delivering outstanding results for our clients.",
+      email: "example@gmail.com",
+      phoneNumber: "+996555678679",
+      address: "Ул. Суванбердиева 108",
+    },
+    ru: {
+      home: "Главная",
+      aboutUs: "О нас",
+      apartments: "Квартиры",
+      contacts: "Контакты",
+      title: "ИНТЕРМАРКЕТИНГ",
+      description:
+        "Помогает алкогольным брендам успешно вывести свои продукты на рынок. Мы специализируемся на создании дизайна и маркетинговых стратегий, обеспечивая выдающиеся результаты для наших клиентов.",
+      email: "example@gmail.com",
+      phoneNumber: "+996555678679",
+      address: "Ул. Суванбердиева 108",
+    },
+    kg: {
+      home: "Башкы бет",
+      aboutUs: "Биз жөнүндө",
+      apartments: "Апартаменттер",
+      contacts: "Байланышуу",
+      title: "ИНТЕРМАРКЕТИНГ",
+      description:
+        "Алкоголдук бренддердин өздөрүнүн маалыматтарын сыяктуу акча болжолдоо. Биз дизайн менен маркетинг стратегияларын жасоо мамлекеттик максаттарды түзөтүп, алардын мүмкүнчүлүктөрү үчүн асык жүзгө келген натыйжа алабыз.",
+      email: "example@gmail.com",
+      phoneNumber: "+996555678679",
+      address: "Ул. Суванбердиева 108",
+    },
+  };
 
   const scrollToSection = (id) => {
     const element = document.getElementById(id);
@@ -10,6 +51,18 @@ const Footer = () => {
       element.scrollIntoView({ behavior: "smooth" });
     }
   };
+
+  const {
+    title,
+    description,
+    email,
+    phoneNumber,
+    address,
+    home,
+    aboutUs,
+    apartments,
+    contacts,
+  } = languageTexts[selectedLanguage];
 
   return (
     <Box
@@ -55,13 +108,9 @@ const Footer = () => {
           }}
         >
           <Typography variant="h5" sx={{ marginBottom: "10px" }}>
-            INTERMARKETING
+            {title}
           </Typography>
-          <Typography variant="body1">
-            помогает алкогольным брендам успешно вывести свои продукты на рынок.
-            Мы специализируемся на создании дизайна и маркетинговых стратегий,
-            обеспечивая выдающиеся результаты для наших клиентов.
-          </Typography>
+          <Typography variant="body1">{description}</Typography>
         </Grid>
         <Grid
           item
@@ -81,22 +130,22 @@ const Footer = () => {
           }}
         >
           <Typography variant="body1" onClick={() => scrollToSection("Home")}>
-            Home
+            {home}
           </Typography>
           <Typography variant="body1" onClick={() => scrollToSection("About")}>
-            About Us
+            {aboutUs}
           </Typography>
           <Typography
             variant="body1"
             onClick={() => scrollToSection("Appartments")}
           >
-            Apartments
+            {apartments}
           </Typography>
           <Typography
             variant="body1"
             onClick={() => scrollToSection("Contacts")}
           >
-            Contacts
+            {contacts}
           </Typography>
         </Grid>
         <Grid
@@ -115,25 +164,23 @@ const Footer = () => {
             <Typography
               variant="body1"
               sx={{ marginLeft: "20px", cursor: "pointer" }}
-              onClick={() =>
-                (window.location.href = "mailto:example@gmail.com")
-              }
+              onClick={() => (window.location.href = `mailto:${email}`)}
             >
-              example@gmail.com
+              {email}
             </Typography>
           </Box>
           <Box display="flex" textAlign="center" marginTop="3px">
             <Typography
               variant="body1"
               sx={{ marginLeft: "20px", cursor: "pointer" }}
-              onClick={() => (window.location.href = "tel:+996555678679")}
+              onClick={() => (window.location.href = `tel:${phoneNumber}`)}
             >
-              +996555678679
+              {phoneNumber}
             </Typography>
           </Box>
           <Box display="flex" textAlign="center" marginTop="3px">
             <Typography variant="body1" sx={{ marginLeft: "20px" }}>
-              Ул. Суванбердиева 108
+              {address}
             </Typography>
           </Box>
         </Grid>

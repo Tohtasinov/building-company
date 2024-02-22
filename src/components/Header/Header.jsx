@@ -1,10 +1,32 @@
-import { Box, useMediaQuery } from "@mui/material";
 import React from "react";
+import { Box, useMediaQuery } from "@mui/material";
 import appartment from "../../assets/Wine_Black_background_Bottle_Stemware_512316_1280x923.jpg";
 import Navbar from "../Navbar/Navbar";
+import { useLanguage } from "../../LanguageContext"; // Импорт контекста языка
 
 function Header() {
+  const { selectedLanguage } = useLanguage(); // Получение текущего выбранного языка
   const isSmallScreen = useMediaQuery((theme) => theme.breakpoints.down(450));
+
+  const languageTexts = {
+    ru: {
+      title: "Интермаркетинг -",
+      subtitle: "продвижение вашего",
+      business: "бизнеса",
+    },
+    kg: {
+      title: "Интермаркетинг -",
+      subtitle: "сиздин",
+      business: "бизнесинизди жогорулатуу",
+    },
+    en: {
+      title: "Intermarketing -",
+      subtitle: "promoting your",
+      business: "business",
+    },
+  };
+
+  const { title, subtitle, business } = languageTexts[selectedLanguage];
 
   return (
     <Box
@@ -34,9 +56,9 @@ function Header() {
         }}
       >
         <h1>
-          Intermarketing - <br />
-          продвижение вашего
-          <br /> бизнеса
+          {title} <br />
+          {subtitle}
+          <br /> {business}
         </h1>
       </Box>
     </Box>

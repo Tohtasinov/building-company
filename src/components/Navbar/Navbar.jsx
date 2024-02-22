@@ -8,16 +8,40 @@ import {
   ListItemButton,
   ListItemText,
   MenuItem,
+  Menu,
   TextField,
   useMediaQuery,
 } from "@mui/material";
 import MenuIcon from "@mui/icons-material/Menu";
-import { useTranslation } from "react-i18next"; // Импортируем useTranslation
+import LanguageIcon from "@mui/icons-material/Language";
 import "./NavBar.css";
+import { useLanguage } from "../../LanguageContext"; // Импорт контекста
+
+const languages = {
+  ru: {
+    home: "Главная",
+    about: "О нас",
+    faq: "FAQ",
+    contacts: "Контакты",
+  },
+  kg: {
+    home: "Башкы бет",
+    about: "Биз тууралуу",
+    faq: "FAQ",
+    contacts: "Байланыш",
+  },
+  en: {
+    home: "Home",
+    about: "About",
+    faq: "FAQ",
+    contacts: "Contacts",
+  },
+};
 
 const Navbar = () => {
-  const { t } = useTranslation();
+  const { selectedLanguage, changeLanguage } = useLanguage(); // Получение значения и функции из контекста
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
+  const [languageMenuAnchor, setLanguageMenuAnchor] = useState(null);
   const isSmallScreen = useMediaQuery((theme) => theme.breakpoints.down(450));
 
   const toggleDrawer = () => {
@@ -30,16 +54,69 @@ const Navbar = () => {
     if (element) {
       console.log("Element found:", element);
       element.scrollIntoView({ behavior: "smooth" });
-      toggleDrawer();
     } else {
       console.log("Element not found");
     }
+  };
+
+  const handleLanguageMenuOpen = (event) => {
+    setLanguageMenuAnchor(event.currentTarget);
+  };
+
+  const handleLanguageMenuClose = () => {
+    setLanguageMenuAnchor(null);
+  };
+
+  const handleLanguageChange = (lng) => {
+    changeLanguage(lng); // Обновление языка через контекст
+    handleLanguageMenuClose();
+  };
+
+  const handleCloseDrawer = () => {
+    setIsDrawerOpen(false); // Закрытие бокового меню и снятие скролла с контейнера
+  };
+
+  // Обработчик нажатия на кнопку прокрутки к разделу
+  const handleScrollToSection = (sectionId) => {
+    scrollToSection(sectionId);
+    handleCloseDrawer(); // Закрытие бокового меню после нажатия на кнопку (если открыто)
   };
 
   return (
     <Box position="fixed" width="100%">
       <nav className="navbar">
         <div className="navbar__brand">INTERMARKETING</div>
+        <Box
+          className="language__selector"
+          sx={{
+            display: "flex",
+            justifyContent: "flex-end",
+            alignItems: "flex-end",
+            width: "100%",
+          }}
+        >
+          <IconButton
+            aria-label="language"
+            aria-controls="language-menu"
+            aria-haspopup="true"
+            onClick={handleLanguageMenuOpen}
+          >
+            <LanguageIcon />
+          </IconButton>
+          <Menu
+            id="language-menu"
+            anchorEl={languageMenuAnchor}
+            keepMounted
+            open={Boolean(languageMenuAnchor)}
+            onClose={handleLanguageMenuClose}
+          >
+            {Object.keys(languages).map((lng) => (
+              <MenuItem key={lng} onClick={() => handleLanguageChange(lng)}>
+                {lng.toUpperCase()}
+              </MenuItem>
+            ))}
+          </Menu>
+        </Box>
         {isSmallScreen ? (
           <>
             <IconButton
@@ -53,53 +130,37 @@ const Navbar = () => {
             <Drawer
               anchor="top"
               open={isDrawerOpen}
-              onClose={toggleDrawer}
+              onClose={toggleDrawer} // Используем toggleDrawer здесь
               sx={{ color: "white" }}
             >
               <List>
-                <ListItemButton
-                  onClick={() => scrollToSection("Home")}
-                  color="white !important"
-                  primary={t("navbar.home")} // Используем переводы через хук useTranslation
-                >
-                  <ListItemText
-                    primary={t("Главное")}
-                    sx={{ color: "white !important" }}
-                  />
-                </ListItemButton>
-                <ListItemButton onClick={() => scrollToSection("About")}>
-                  <ListItemText primary={t("Наши услуги")} />
-                </ListItemButton>
-                <ListItemButton onClick={() => scrollToSection("FAQ")}>
-                  <ListItemText primary={t("FAQ")} />
-                </ListItemButton>
-                <ListItemButton onClick={() => scrollToSection("Contacts")}>
-                  <ListItemText primary={t("Контакты")} />
-                </ListItemButton>
+                {Object.keys(languages[selectedLanguage]).map((key) => (
+                  <ListItemButton
+                    key={key}
+                    onClick={() => scrollToSection(key)}
+                    color="white !important"
+                  >
+                    <ListItemText
+                      primary={languages[selectedLanguage][key]}
+                      sx={{ color: "white !important" }}
+                    />
+                  </ListItemButton>
+                ))}
               </List>
             </Drawer>
           </>
         ) : (
-          <ul className="navbar__links">
-            <li>
-              <Button onClick={() => scrollToSection("Home")}>
-                {t("Главное")}
-              </Button>
-            </li>
-            <li>
-              <Button onClick={() => scrollToSection("About")}>
-                {t("Наши услуги")}
-              </Button>
-            </li>
-            <li>
-              <Button onClick={() => scrollToSection("FAQ")}>{t("FAQ")}</Button>
-            </li>
-            <li>
-              <Button onClick={() => scrollToSection("Contacts")}>
-                {t("Контакты")}
-              </Button>
-            </li>
-          </ul>
+          <>
+            <ul className="navbar__links">
+              {Object.keys(languages[selectedLanguage]).map((key) => (
+                <li key={key}>
+                  <Button onClick={() => scrollToSection(key)}>
+                    {languages[selectedLanguage][key]}
+                  </Button>
+                </li>
+              ))}
+            </ul>
+          </>
         )}
       </nav>
     </Box>
