@@ -1,7 +1,9 @@
 import React from "react";
-import { Box, Grid, Typography } from "@mui/material";
+import { Box, Grid, Typography, useMediaQuery } from "@mui/material";
 
 const Footer = () => {
+  const isSmallScreen = useMediaQuery((theme) => theme.breakpoints.down(450));
+
   const scrollToSection = (id) => {
     const element = document.getElementById(id);
     if (element) {
@@ -13,11 +15,13 @@ const Footer = () => {
     <Box
       id="Footer"
       sx={{
-        backgroundColor: "rgba(0, 0, 0, 0.8)",
+        backgroundColor: "rgba(0, 0, 0, 1)",
         borderRadius: "50px 50px 0 0",
         marginLeft: "-8px",
         marginRight: "-8px",
-        marginBottom: "10px",
+        border: "1px solid #ccc",
+        width: "100%",
+        paddingBottom: isSmallScreen ? "50px" : "20px",
       }}
     >
       <Grid
@@ -30,7 +34,6 @@ const Footer = () => {
           pl: "20px",
           fontFamily: "Geologica",
           display: "flex",
-          marginBottom: "-20px",
           "@media (max-width: 450px)": {
             flexDirection: "column",
             height: "auto",
@@ -55,9 +58,9 @@ const Footer = () => {
             INTERMARKETING
           </Typography>
           <Typography variant="body1">
-            Ведущая строительная компания, приверженная высоким стандартам
-            качества, профессионализму и надежности в реализации жилых,
-            коммерческих и промышленных проектов.
+            помогает алкогольным брендам успешно вывести свои продукты на рынок.
+            Мы специализируемся на создании дизайна и маркетинговых стратегий,
+            обеспечивая выдающиеся результаты для наших клиентов.
           </Typography>
         </Grid>
         <Grid
@@ -68,7 +71,7 @@ const Footer = () => {
             display: "flex",
             flexDirection: "column",
             justifyContent: "center",
-            paddingLeft: "20px",
+            paddingLeft: isSmallScreen ? "20px" : "150px",
             height: "100%",
             marginTop: "10px",
             "& p": {

@@ -7,12 +7,18 @@ import {
   List,
   ListItemButton,
   ListItemText,
+  MenuItem,
+  TextField,
+  useMediaQuery,
 } from "@mui/material";
 import MenuIcon from "@mui/icons-material/Menu";
+import { useTranslation } from "react-i18next"; // Импортируем useTranslation
 import "./NavBar.css";
 
 const Navbar = () => {
+  const { t } = useTranslation();
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
+  const isSmallScreen = useMediaQuery((theme) => theme.breakpoints.down(450));
 
   const toggleDrawer = () => {
     setIsDrawerOpen(!isDrawerOpen);
@@ -24,6 +30,7 @@ const Navbar = () => {
     if (element) {
       console.log("Element found:", element);
       element.scrollIntoView({ behavior: "smooth" });
+      toggleDrawer();
     } else {
       console.log("Element not found");
     }
@@ -31,31 +38,43 @@ const Navbar = () => {
 
   return (
     <Box position="fixed" width="100%">
-      <nav className="navbar" width="100%">
+      <nav className="navbar">
         <div className="navbar__brand">INTERMARKETING</div>
-        {window.innerWidth < 450 ? (
+        {isSmallScreen ? (
           <>
             <IconButton
-              edge="end"
+              className="menu__icon"
               color="inherit"
               aria-label="menu"
               onClick={toggleDrawer}
             >
               <MenuIcon />
             </IconButton>
-            <Drawer anchor="right" open={isDrawerOpen} onClose={toggleDrawer}>
+            <Drawer
+              anchor="top"
+              open={isDrawerOpen}
+              onClose={toggleDrawer}
+              sx={{ color: "white" }}
+            >
               <List>
-                <ListItemButton onClick={() => scrollToSection("Home")}>
-                  <ListItemText primary="Home" />
+                <ListItemButton
+                  onClick={() => scrollToSection("Home")}
+                  color="white !important"
+                  primary={t("navbar.home")} // Используем переводы через хук useTranslation
+                >
+                  <ListItemText
+                    primary={t("Главное")}
+                    sx={{ color: "white !important" }}
+                  />
                 </ListItemButton>
                 <ListItemButton onClick={() => scrollToSection("About")}>
-                  <ListItemText primary="About Us" />
+                  <ListItemText primary={t("Наши услуги")} />
                 </ListItemButton>
-                <ListItemButton onClick={() => scrollToSection("Appartments")}>
-                  <ListItemText primary="Apartments" />
+                <ListItemButton onClick={() => scrollToSection("FAQ")}>
+                  <ListItemText primary={t("FAQ")} />
                 </ListItemButton>
                 <ListItemButton onClick={() => scrollToSection("Contacts")}>
-                  <ListItemText primary="Contacts" />
+                  <ListItemText primary={t("Контакты")} />
                 </ListItemButton>
               </List>
             </Drawer>
@@ -63,19 +82,21 @@ const Navbar = () => {
         ) : (
           <ul className="navbar__links">
             <li>
-              <Button onClick={() => scrollToSection("Home")}>Home</Button>
-            </li>
-            <li>
-              <Button onClick={() => scrollToSection("About")}>About Us</Button>
-            </li>
-            <li>
-              <Button onClick={() => scrollToSection("Appartments")}>
-                Apartments
+              <Button onClick={() => scrollToSection("Home")}>
+                {t("Главное")}
               </Button>
             </li>
             <li>
+              <Button onClick={() => scrollToSection("About")}>
+                {t("Наши услуги")}
+              </Button>
+            </li>
+            <li>
+              <Button onClick={() => scrollToSection("FAQ")}>{t("FAQ")}</Button>
+            </li>
+            <li>
               <Button onClick={() => scrollToSection("Contacts")}>
-                Contacts
+                {t("Контакты")}
               </Button>
             </li>
           </ul>

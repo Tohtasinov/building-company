@@ -10,6 +10,7 @@ const Contacts = (props) => {
         backgroundColor: "rgba(0, 0, 0, 0.8)",
         borderRadius: "30px",
         marginBottom: "20px",
+        border: "1px solid #ccc",
       }}
     >
       <Box sx={{ maxWidth: 600, margin: "auto", padding: 3 }}>

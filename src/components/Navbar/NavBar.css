@@ -4,11 +4,12 @@
   align-items: center;
   padding: 1rem;
   background-color: rgba(0, 0, 0, 0.8);
-  color: white;
+  color: white !important;
 }
 
 .navbar__brand {
   font-size: 1.5rem;
+  margin-left: 40px;
 }
 
 .navbar__links {
@@ -27,4 +28,21 @@
 
 .navbar__links a:hover {
   text-decoration: underline;
+}
+
+.css-1e6y48t-MuiButtonBase-root-MuiButton-root {
+  color: white !important;
+}
+
+.menu__icon {
+  margin-right: 10px; /* Добавьте необходимый отступ между иконкой меню и брендом */
+}
+
+/* Добавьте стили для Drawer */
+.MuiDrawer-root {
+  z-index: 9999; /* Установите необходимый z-index для Drawer */
+}
+
+.MuiDrawer-paper {
+  background-color: #333; /* Измените цвет фона меню по своему желанию */
 }

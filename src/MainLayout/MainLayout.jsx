@@ -9,7 +9,7 @@ import Contacts from "../components/Contacts/Contacts";
 
 const MainLayout = (props) => {
   return (
-    <Box>
+    <Box sx={{ backgroundColor: "black" }}>
       <Header />
       <Appartments />
       <Support />
