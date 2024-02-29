@@ -1,6 +1,5 @@
 import React from "react";
 import { Box, Typography, IconButton } from "@mui/material";
-import { Facebook, Twitter, Instagram, WhatsApp } from "@mui/icons-material";
 import { useLanguage } from "../../LanguageContext"; // Импортируйте ваш контекст языка
 
 const Contacts = (props) => {
@@ -38,7 +37,7 @@ const Contacts = (props) => {
 
   return (
     <Box
-      id="Contacts"
+      id="contacts"
       sx={{
         backgroundColor: "rgba(0, 0, 0, 0.8)",
         borderRadius: "30px",
@@ -88,22 +87,6 @@ const Contacts = (props) => {
           <Typography>
             <a href="mailto:example@gmail.com">example@gmail.com</a>
           </Typography>
-        </Box>
-        <Box
-          sx={{ bgcolor: "#f9f9f9", padding: 2, borderRadius: 8, marginTop: 2 }}
-        >
-          <Typography variant="h6">
-            {languageTexts[selectedLanguage].socialMedia}:
-          </Typography>
-          <IconButton href="#">
-            <Facebook />
-          </IconButton>
-          <IconButton href="#">
-            <WhatsApp />
-          </IconButton>
-          <IconButton href="#">
-            <Instagram />
-          </IconButton>
         </Box>
       </Box>
     </Box>

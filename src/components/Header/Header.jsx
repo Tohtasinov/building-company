@@ -30,7 +30,7 @@ function Header() {
 
   return (
     <Box
-      id="Home"
+      id="home"
       sx={{
         backgroundImage: `url(${appartment})`,
         backgroundSize: "cover",

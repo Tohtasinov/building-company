@@ -9,13 +9,12 @@ import {
   ListItemText,
   MenuItem,
   Menu,
-  TextField,
   useMediaQuery,
 } from "@mui/material";
 import MenuIcon from "@mui/icons-material/Menu";
 import LanguageIcon from "@mui/icons-material/Language";
 import "./NavBar.css";
-import { useLanguage } from "../../LanguageContext"; // Импорт контекста
+import { useLanguage } from "../../LanguageContext";
 
 const languages = {
   ru: {
@@ -39,7 +38,7 @@ const languages = {
 };
 
 const Navbar = () => {
-  const { selectedLanguage, changeLanguage } = useLanguage(); // Получение значения и функции из контекста
+  const { selectedLanguage, changeLanguage } = useLanguage();
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
   const [languageMenuAnchor, setLanguageMenuAnchor] = useState(null);
   const isSmallScreen = useMediaQuery((theme) => theme.breakpoints.down(450));
@@ -49,7 +48,7 @@ const Navbar = () => {
   };
 
   const scrollToSection = (id) => {
-    console.log("Scrolling to section:", id);
+    console.log("Scrolling to section with ID:", id);
     const element = document.getElementById(id);
     if (element) {
       console.log("Element found:", element);
@@ -58,7 +57,6 @@ const Navbar = () => {
       console.log("Element not found");
     }
   };
-
   const handleLanguageMenuOpen = (event) => {
     setLanguageMenuAnchor(event.currentTarget);
   };
@@ -68,18 +66,17 @@ const Navbar = () => {
   };
 
   const handleLanguageChange = (lng) => {
-    changeLanguage(lng); // Обновление языка через контекст
+    changeLanguage(lng);
     handleLanguageMenuClose();
   };
 
   const handleCloseDrawer = () => {
-    setIsDrawerOpen(false); // Закрытие бокового меню и снятие скролла с контейнера
+    setIsDrawerOpen(false);
   };
 
-  // Обработчик нажатия на кнопку прокрутки к разделу
   const handleScrollToSection = (sectionId) => {
     scrollToSection(sectionId);
-    handleCloseDrawer(); // Закрытие бокового меню после нажатия на кнопку (если открыто)
+    handleCloseDrawer();
   };
 
   return (
@@ -130,14 +127,14 @@ const Navbar = () => {
             <Drawer
               anchor="top"
               open={isDrawerOpen}
-              onClose={toggleDrawer} // Используем toggleDrawer здесь
+              onClose={toggleDrawer}
               sx={{ color: "white" }}
             >
-              <List>
+              <List sx={{ backgroundColor: "black" }}>
                 {Object.keys(languages[selectedLanguage]).map((key) => (
                   <ListItemButton
                     key={key}
-                    onClick={() => scrollToSection(key)}
+                    onClick={() => handleScrollToSection(key)}
                     color="white !important"
                   >
                     <ListItemText

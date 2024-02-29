@@ -66,7 +66,7 @@ const Support = (props) => {
 
   return (
     <Box
-      id="FAQ"
+      id="faq"
       sx={{
         margin: "auto",
         padding: 3,

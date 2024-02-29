@@ -18,6 +18,7 @@ const Footer = () => {
       email: "example@gmail.com",
       phoneNumber: "+996555678679",
       address: "Ул. Суванбердиева 108",
+      faq: "FAQ",
     },
     ru: {
       home: "Главная",
@@ -30,6 +31,7 @@ const Footer = () => {
       email: "example@gmail.com",
       phoneNumber: "+996555678679",
       address: "Ул. Суванбердиева 108",
+      faq: "FAQ",
     },
     kg: {
       home: "Башкы бет",
@@ -42,6 +44,7 @@ const Footer = () => {
       email: "example@gmail.com",
       phoneNumber: "+996555678679",
       address: "Ул. Суванбердиева 108",
+      faq: "FAQ",
     },
   };
 
@@ -59,14 +62,14 @@ const Footer = () => {
     phoneNumber,
     address,
     home,
-    aboutUs,
     apartments,
     contacts,
+    faq,
   } = languageTexts[selectedLanguage];
 
   return (
     <Box
-      id="Footer"
+      id="footer"
       sx={{
         backgroundColor: "rgba(0, 0, 0, 1)",
         borderRadius: "50px 50px 0 0",
@@ -129,21 +132,18 @@ const Footer = () => {
             },
           }}
         >
-          <Typography variant="body1" onClick={() => scrollToSection("Home")}>
+          <Typography variant="body1" onClick={() => scrollToSection("home")}>
             {home}
           </Typography>
-          <Typography variant="body1" onClick={() => scrollToSection("About")}>
-            {aboutUs}
-          </Typography>
-          <Typography
-            variant="body1"
-            onClick={() => scrollToSection("Appartments")}
-          >
+          <Typography variant="body1" onClick={() => scrollToSection("about")}>
             {apartments}
           </Typography>
+          <Typography variant="body1" onClick={() => scrollToSection("faq")}>
+            {faq}
+          </Typography>
           <Typography
             variant="body1"
-            onClick={() => scrollToSection("Contacts")}
+            onClick={() => scrollToSection("contacts")}
           >
             {contacts}
           </Typography>
