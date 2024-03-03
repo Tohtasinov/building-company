@@ -75,7 +75,11 @@ const Appartments = (props) => {
               <img
                 src={index === 0 ? foto1 : index === 1 ? foto2 : foto3}
                 alt={`Service ${index + 1}`}
-                style={{ width: "100%", height: "380px", borderRadius: "10px" }}
+                style={{
+                  width: "100%",
+                  height: isSmallScreen ? "100%" : "380px",
+                  borderRadius: "10px",
+                }}
               />
               <Typography>{service}</Typography>
             </Box>

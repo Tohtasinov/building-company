@@ -29,37 +29,39 @@ function Header() {
   const { title, subtitle, business } = languageTexts[selectedLanguage];
 
   return (
-    <Box
-      id="home"
-      sx={{
-        backgroundImage: `url(${appartment})`,
-        backgroundSize: "cover",
-        backgroundPosition: "center",
-        height: "100vh",
-        margin: "-8px",
-        marginBottom: "30px",
-        width: "100%",
-      }}
-    >
-      <Navbar />
+    <Box height={"100vh"}>
       <Box
+        id="home"
         sx={{
-          display: "flex",
-          flexDirection: "column",
-          justifyContent: "center",
-          alignItems: isSmallScreen ? "center" : "start",
-          height: "80%",
-          fontSize: isSmallScreen ? "1.5rem" : "2rem",
-          color: "white",
-          margin: isSmallScreen ? "0 20px" : "0 50px",
-          paddingTop: "50px",
+          backgroundImage: `url(${appartment})`,
+          backgroundSize: "cover",
+          backgroundPosition: "center",
+          height: "100%",
+          margin: "-8px",
+          marginBottom: "30px",
+          width: "100%",
         }}
       >
-        <h1>
-          {title} <br />
-          {subtitle}
-          <br /> {business}
-        </h1>
+        <Navbar />
+        <Box
+          sx={{
+            display: "flex",
+            flexDirection: "column",
+            justifyContent: "center",
+            alignItems: isSmallScreen ? "center" : "start",
+            height: "80%",
+            fontSize: isSmallScreen ? "1.5rem" : "2rem",
+            color: "white",
+            margin: isSmallScreen ? "0 20px" : "0 50px",
+            paddingTop: "50px",
+          }}
+        >
+          <h1>
+            {title} <br />
+            {subtitle}
+            <br /> {business}
+          </h1>
+        </Box>
       </Box>
     </Box>
   );
