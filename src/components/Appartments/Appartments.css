@@ -1,3 +1,13 @@
 .css-vubbuv {
   color: white;
 }
+
+#foto {
+  height: 380px;
+}
+
+@media (max-width: 450px) {
+  #foto {
+    height: 100%;
+  }
+}

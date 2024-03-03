@@ -74,6 +74,7 @@ const Appartments = (props) => {
           {services.map((service, index) => (
             <Box key={index} width={isSmallScreen ? "100%" : "40%"}>
               <img
+                id="foto"
                 src={index === 0 ? foto1 : index === 1 ? foto2 : foto3}
                 alt={`Service ${index + 1}`}
                 style={{
