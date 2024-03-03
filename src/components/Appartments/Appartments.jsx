@@ -79,7 +79,7 @@ const Appartments = (props) => {
                 alt={`Service ${index + 1}`}
                 style={{
                   width: "100%",
-                  height: isSmallScreen ? "100%" : "380px",
+                  height: "100%",
                   borderRadius: "10px",
                 }}
               />
