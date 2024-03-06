@@ -9,8 +9,7 @@ const Footer = () => {
   const languageTexts = {
     en: {
       home: "Home",
-      aboutUs: "About Us",
-      apartments: "Apartments",
+      about: "About Us",
       contacts: "Contacts",
       title: "INTERMARKETING",
       description:
@@ -22,8 +21,7 @@ const Footer = () => {
     },
     ru: {
       home: "Главная",
-      aboutUs: "О нас",
-      apartments: "Квартиры",
+      about: "О нас",
       contacts: "Контакты",
       title: "ИНТЕРМАРКЕТИНГ",
       description:
@@ -35,8 +33,7 @@ const Footer = () => {
     },
     kg: {
       home: "Башкы бет",
-      aboutUs: "Биз жөнүндө",
-      apartments: "Апартаменттер",
+      about: "Биз жөнүндө",
       contacts: "Байланышуу",
       title: "ИНТЕРМАРКЕТИНГ",
       description:
@@ -62,7 +59,7 @@ const Footer = () => {
     phoneNumber,
     address,
     home,
-    apartments,
+    about,
     contacts,
     faq,
   } = languageTexts[selectedLanguage];
@@ -136,7 +133,7 @@ const Footer = () => {
             {home}
           </Typography>
           <Typography variant="body1" onClick={() => scrollToSection("about")}>
-            {apartments}
+            {about}
           </Typography>
           <Typography variant="body1" onClick={() => scrollToSection("faq")}>
             {faq}

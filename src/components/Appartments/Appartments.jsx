@@ -2,7 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import { Box, Typography, useMediaQuery } from "@mui/material";
 import appartment from "../../assets/квартира.jpg";
-import foto1 from "../../assets/foto1.jpg";
+import foto1 from "../../assets/inline_image_preview.avif";
 import foto2 from "../../assets/bran1590644249.jpg";
 import foto3 from "../../assets/tequila-bottles-on-a-black-background-magic-drink_951308-93.jpg";
 import { useLanguage } from "../../LanguageContext";
